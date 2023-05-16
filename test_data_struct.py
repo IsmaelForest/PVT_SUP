@@ -32,7 +32,7 @@ def create_firefox_driver(ublock:bool, headless:bool=True):
     firefox_driver_path = os.getcwd() + "\\ff\\geckodriver.exe"
     user_agent = USERS_USER_AGENT_DICT["firefox"]
     firefox_options = webdriver.FirefoxOptions()
-    if headless:firefox_options.add_argument("--headless")
+    if headless:firefox_options.add_argument()
     firefox_options.add_argument(f"user-agent={user_agent}")
     if ublock:
         firefox_profile = webdriver.FirefoxProfile()
@@ -41,12 +41,12 @@ def create_firefox_driver(ublock:bool, headless:bool=True):
     driver = webdriver.Firefox(executable_path=firefox_driver_path, options=firefox_options, firefox_profile=firefox_profile)
     return driver
 
-def create_edge_driver(ublock:bool, headless:bool=True):
+def create_edge_driver(ublock:bool, headless:bool=False):
     ublock_path = os.getcwd()+"\\uBlock.crx"
     edge_driver_path = os.getcwd() + "\\edge\\msedgedriver.exe"
     user_agent = USERS_USER_AGENT_DICT['edge']
     edge_options = webdriver.EdgeOptions()
-    if headless:edge_options.add_argument("--headless")
+    if headless:edge_options.add_argument()
     edge_options.add_argument(f"user-agent={user_agent}")
     if ublock:
         edge_options.add_extension(ublock_path)
@@ -172,11 +172,11 @@ def test_ss_list(website_url:str, ss_list:list, driver):
         count+=1
         #input()
         print(type_find)
-        if special: # specific indexed result
+        if special_list: # specific indexed result
             if "refresh_sens" in special_list:
                 refresh_mem.append((type_find, css))
             #if special[:3] == "ind_":
-            if any("ind_" in string for string in special_list):
+            if "ind_" in special_list:
                 done_special=True
                 try:
                     #elements = driver.find_elements(type_find, css)
@@ -202,6 +202,7 @@ def test_ss_list(website_url:str, ss_list:list, driver):
                 rand_ind = randint(1,len(elements))-1
                 element = elements[rand_ind]
         if not done_special:
+
             try:
                 #element = driver.find_element(type_find, css)
                 element = better_find_element(driver, website_url, css, type_find)
@@ -222,10 +223,9 @@ def test_ss_list(website_url:str, ss_list:list, driver):
 
 if __name__ == "__main__":
     #c_driver = create_edge_driver(ublock=True, headless=False)
-    #c_driver = create_chrome_driver(ublock=True, headless=False)
-    website_to_test = "https://www.youtube.com/"
-    seleniumsselector_list = ["rand_ind:css selector;ytd-rich-item-renderer"] # "refresh_sens:id;guide-icon", "relies_prev:partial link text;Trending",
-    #seleniumsselector_list = ["direct-link;signin", "partial link text;Create account"]
-    #test_ss_list(website_to_test, seleniumsselector_list, c_driver)
-    test_struct("https://www.youtube.com/")
+    c_driver = create_chrome_driver(ublock=False, headless=False)
+    website_to_test = "https://intuit.com/"
+    seleniumsselector_list = ["partial-link text;products/"] # "refresh_sens:id;guide-icon", "relies_prev:partial link text;Trending",
+    test_ss_list(website_to_test, seleniumsselector_list, c_driver)
+    #test_struct("https://www.youtube.com/")
     pass
