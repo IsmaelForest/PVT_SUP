@@ -13,7 +13,8 @@ WEBSITE_LIST = {"https://www.youtube.com/":
                                    "gaming":  'relies_prev:partial link text;Gaming',
                                    "news":    'relies_prev:partial link text;News',
                                    "sports":  'relies_prev:partial link text;Sports',
-                                   "learning":'relies_prev:partial link text;Learning'
+                                   "learning": 'relies_prev:partial link text;Learning',
+                                   "MrBeast vids": 'partial link text; Error 404'
                                    },
                       "trending":{"video":'rand_ind:css selector;ytd-video-renderer'
                                   },
