@@ -223,6 +223,12 @@ def test_ss_list(website_url:str, ss_list:list, driver):
             break
         time.sleep(2)
     input("OUT")
+def get_every_endpoints(data, endpoints_list):
+    if isinstance(data, dict):
+        for value in data.values():
+            get_every_endpoints(value, endpoints_list)
+    elif isinstance(data, str) and not data.startswith("relies_prev:"):
+        endpoints_list.append(data)
 
 if __name__ == "__main__":
     #c_driver = create_edge_driver(ublock=True, headless=False)
@@ -231,9 +237,11 @@ if __name__ == "__main__":
     website_list = [WEBSITE_LIST]
     seleniumsselector_list = []
     website_data = website_list[0]
-    product_data = website_data["https://www.inuit.com/"]["sub-endpoints"]["product"]
+    product_data = website_data["https://www.inuit.com/"]["sub-endpoints"]["supports_and_blogs"]
     for product_key, product_value in product_data.items():
         seleniumsselector_list.append((product_key, product_value))
     test_ss_list(website_to_test, seleniumsselector_list, c_driver)
     #test_struct("https://www.youtube.com/")
+    print(get_every_endpoints(WEBSITE_LIST,endpoints_list = []))
+
     pass
