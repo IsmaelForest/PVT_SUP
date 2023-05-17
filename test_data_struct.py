@@ -148,6 +148,9 @@ def better_find_element(driver, url, css, type_find, pural:bool=False):
     elif type_find == "direct-link":
         driver.get(url+"/"+css)
         return
+    elif type_find == "full-link":
+        driver.get(css)
+        return
     else:
         element = driver.find_element(type_find, css)
         return element
@@ -213,7 +216,7 @@ def test_ss_list(website_url:str, ss_list:list, driver):
                     element = retry_3times_relies_prev_single(driver, website_url, last_type_find, last_css, type_find, css)
                     
         try:
-            if type_find != "direct-link": 
+            if type_find == "direct-link" or type_find == "full_link": 
                 element.click()
         except:
             print("FAILED TO GET ELEMENT AFTER RETRIES")
@@ -225,7 +228,12 @@ if __name__ == "__main__":
     #c_driver = create_edge_driver(ublock=True, headless=False)
     c_driver = create_chrome_driver(ublock=False, headless=False)
     website_to_test = "https://intuit.com/"
-    seleniumsselector_list = ["partial-link text;products/"] # "refresh_sens:id;guide-icon", "relies_prev:partial link text;Trending",
+    website_list = [WEBSITE_LIST]
+    seleniumsselector_list = []
+    website_data = website_list[0]
+    product_data = website_data["https://www.inuit.com/"]["sub-endpoints"]["product"]
+    for product_key, product_value in product_data.items():
+        seleniumsselector_list.append((product_key, product_value))
     test_ss_list(website_to_test, seleniumsselector_list, c_driver)
     #test_struct("https://www.youtube.com/")
     pass
