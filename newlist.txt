@@ -176,8 +176,6 @@
 984,ancestry.com
 990,wayfair.com
 991,theatlantic.com
-992,apache.org
-998,pcgamer.com
 810,uber.com
 814,grammarly.com
 817,khanacademy.org
