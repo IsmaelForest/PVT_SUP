@@ -341,23 +341,27 @@ WEBSITE_LIST = {
                                 "various-endpoints":'relies_prev:refresh_sens:rand_ind: css selector;a[href*="fedex.com"]',                        
                             } 
                     }, 
-                    "https://www.theverge.com/":
+                    #sportbible
+                    "https://www.sportbible.com":
                     {
                         "specifics":"ablock=true;",
                         "endpoints":
                             { 
-                                #Main
-                                "main-menu":'css selector;#__next > div > main > div.lg\:relative > div.top-0.h-\[calc\(100\%-100vh\)\].w-full.lg\:absolute > div > div > div > nav > ul > li:nth-child(6) > button#__next > div > main > div.lg\:relative > div.top-0.h-\[calc\(100\%-100vh\)\].w-full.lg\:absolute > div > div > div > nav > ul > li:nth-child(6) > button',                                                                
-                                #login
                                 #Main page 
+                                "today":'css selector;#root > div > div.css-yp9swi > div > div > div.heroArticle.css-jtiv7e > article > div.image-wrapper > a',
+                                "Spotlight":'rand_ind:css selector;#root > div > div.css-yp9swi > section.css-1hb3ec6 > section > div > article > div.image-wrapper > a',
+                                "list": 'rand_ind:css selector;#root > div > div.css-yp9swi > div > div > div.css-sx1r5m-HeroContentWrapper > div > section > article> div.contentWrapper.css-23fwot > a',
+                                "football":'direct-link;football',
+                                "boxing":'direct-link;boxing',
+                                "mma":'direct-link,MMA'
                                 #footer
                             },
                     "sub-endpoints":
                     {
                             #Navbar
-                            "main-menu":
+                            "football":
                             {
-                                "tech":'id;headlessui-disclosure-button-:r3:',
+                                "breaking-news":'rand_ind;#root > div > div.css-yp9swi > div > main > section.spotlight-section.css-iw1oi4 > div:nth-child > article > div.image-wrapper > a',
                                 "reviews":'id;headlessui-disclosure-button-:r4:',
                                 "science":'id;headlessui-disclosure-button-:r5:',
                                 "entertainement":'id;headlessui-disclosure-button-:r6:',
@@ -367,29 +371,9 @@ WEBSITE_LIST = {
                                 "store":'css selector;#headlessui-dialog-panel-\:r2\: > aside > nav > ul > li:nth-child(9) > a',
                                 "log-in":'css selector;#headlessui-dialog-panel-\:r2\: > aside > div.mb-60 > div.relative.flex.items-baseline.font-polysans.text-33.text-franklin > a:nth-child(2)',
                                 "sign-up":'css selector;#headlessui-dialog-panel-\:r2\: > aside > div.mb-60 > div.relative.flex.items-baseline.font-polysans.text-33.text-franklin > a:nth-child(4)',
+                            },
 
-                            
-                            },
-                            "tech":
-                            {
-                                'rand_ind:xpath;/html/body/div[2]/div[2]/div/div/div/div[2]/div/aside/nav/ul/li[2]/div/ul/li/a'
-                            },
-                            "reviews":
-                            {
-                                "all-reviews":'css selector;#headlessui-disclosure-panel-\:ro\: > ul > li:nth-child(1) > a',
-                                "buying-guides":'css selector;#headlessui-disclosure-panel-\:ro\: > ul > li:nth-child(2) > a',
-                                "gift-guide":'css selector;#headlessui-disclosure-panel-\:ro\: > ul > li:nth-child(3) > a',
-                                "laptops":'css selector;#headlessui-disclosure-panel-\:ro\: > ul > li:nth-child(4) > a',
-                                "phones":'css selector;#headlessui-disclosure-panel-\:ro\: > ul > li:nth-child(5) > a',
-                                "headphones":'css selector;#headlessui-disclosure-panel-\:ro\: > ul > li:nth-child(6) > a',
-                                "tablet":'css selector;#headlessui-disclosure-panel-\:ro\: > ul > li:nth-child(7) > a',
-                                "smart-home":'css selector;#headlessui-disclosure-panel-\:ro\: > ul > li:nth-child(8) > a',
-                                "s,art watches":'css selector;#headlessui-disclosure-panel-\:ro\: > ul > li:nth-child(9) > a',
-                                "speakers":'css selector;#headlessui-disclosure-panel-\:ro\: > ul > li:nth-child(10) > a',
-                                "drones":'css selector;#headlessui-disclosure-panel-\:ro\: > ul > li:nth-child(11) > a',
-                                "deals":'css selector;#headlessui-disclosure-panel-\:ro\: > ul > li:nth-child(12) > a',
 
-                            },
                     }
 }
 }

@@ -170,7 +170,10 @@ def test_ss_list(website_url:str, ss_list:list, driver):
             special, type_find = type_find.split(":")
             special_list = special.split["~"]
         except:
-            pass
+            try:
+                special_list = special 
+            except:
+                pass
         print(count)
         count+=1
         #input()
@@ -216,7 +219,7 @@ def test_ss_list(website_url:str, ss_list:list, driver):
                     element = retry_3times_relies_prev_single(driver, website_url, last_type_find, last_css, type_find, css)
                     
         try:
-            if type_find == "direct-link" or type_find == "full_link": 
+            if type_find != "direct-link" or type_find != "full_link" : 
                 element.click()
         except:
             print("FAILED TO GET ELEMENT AFTER RETRIES")
@@ -233,15 +236,12 @@ def get_every_endpoints(data, endpoints_list):
 if __name__ == "__main__":
     #c_driver = create_edge_driver(ublock=True, headless=False)
     c_driver = create_chrome_driver(ublock=False, headless=False)
-    website_to_test = "https://intuit.com/"
-    website_list = [WEBSITE_LIST]
-    seleniumsselector_list = []
-    website_data = website_list[0]
-    product_data = website_data["https://www.inuit.com/"]["sub-endpoints"]["supports_and_blogs"]
-    for product_key, product_value in product_data.items():
-        seleniumsselector_list.append((product_key, product_value))
-    test_ss_list(website_to_test, seleniumsselector_list, c_driver)
+    website_to_test = "https://www.sportbible.com"
+    individual_data = [
+                        'direct-link;mma',
+                        'css selector;#root > div > div.css-yp9swi > div > main > section.spotlight-section.css-iw1oi4 > div:nth-child(4) > article > div.image-wrapper > a > figure > picture > img']
+    
+    test_ss_list(website_to_test,individual_data, c_driver)
     #test_struct("https://www.youtube.com/")
     print(get_every_endpoints(WEBSITE_LIST,endpoints_list = []))
-
     pass
